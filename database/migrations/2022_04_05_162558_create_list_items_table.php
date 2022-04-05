@@ -13,8 +13,11 @@ class CreateListItemsTable extends Migration
      */
     public function up()
     {
+        //* Table structure
         Schema::create('list_items', function (Blueprint $table) {
             $table->id();
+            $table->string('name'); //* Create 2 other fields
+            $table->integer('is_complete');
             $table->timestamps();
         });
     }
