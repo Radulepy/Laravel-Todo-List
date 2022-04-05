@@ -407,9 +407,35 @@
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div style="color: white;">
             <h1>Todo list</h1>
-            <label for="listItem">ToDo List:</label><br>
-            <input type="text" name="listItem" id=""><br>
-            <button type="button"> Save item</button>
+
+            @foreach($listItems as $listItem)
+            <div style="align-items: center; display: flex; align-items: center; justify-content: center;">
+                @if($listItem->is_complete === 0)
+                <p> Item: {{$listItem->name}} </p>
+                <form action="{{ route('markComplete', $listItem->id)}}" method="POST">
+                    {{csrf_field()}}
+                    <button type="submit" style="max-height: 20px; margin-left: 10px;"> Done </button>
+                </form>
+                @else
+                <p> <del> Item: {{$listItem->name}} </del></p>
+                <form action="{{ route('markIncomplete', $listItem->id)}}" method="POST">
+                    {{csrf_field()}}
+                    <button type="submit" style="max-height: 20px; margin-left: 10px;"> Redo </button>
+                </form>
+                @endif
+            </div>
+            @endforeach
+
+            <form action="{{ route('saveItem') }}" method="POST" accept-charset="UTF-8">
+
+                <!-- FIELD NEEDED ON EVERY FORM -->
+                {{ csrf_field() }}
+
+                <label for="listItem">ToDo List:</label><br>
+                <input type="text" name="listItem" id=""><br>
+                <button type="submit"> Save item</button>
+            </form>
+
         </div>
 
     </div>
