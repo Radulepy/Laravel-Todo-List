@@ -9,6 +9,7 @@
 
 ## Simple Todo List:
 Add and remove items from list. Make real-time changes to `todolist` database.
+- Tutorial [link](https://www.youtube.com/watch?v=AEVhR-hD2Wk)
 
 
 ## About Laravel
